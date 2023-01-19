@@ -28,12 +28,16 @@ class Diary
   end
 
   def find_best_entry_for_reading_time(wpm, minutes)
-    minutes_array = []
-    reading_times = Hash.new
-    @diary.each do |x|
-      Hash[:x] = x.count_words
-    end
-    return Hash
+    words = wpm*minutes
+    best_words = ""
+    best_word_count = wpm*minutes
+    @diary.each do |entry|
+      if (words - entry.count_words) < best_word_count
+        best_words = entry
+        best_word_count = words - entry.count_words
+      end
+      end
+      best_words
   end
 end
 # File: lib/diary_entry.rb
