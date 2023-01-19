@@ -54,4 +54,20 @@ describe 'Diary Integration' do
     diary.add(today)
     expect(diary.count_words).to eq 4
   end
+  it 'returns the time taken to read the diary' do
+    today = DiaryEntry.new('today','I ran')
+    yesterday = DiaryEntry.new('yesterday','I walked')
+    diary = Diary.new
+    diary.add(yesterday)
+    diary.add(today)
+    expect(diary.reading_time(2)).to eq 2
+  end
+  it 'returns the diary that is closest to in length but not of the wpm multiplied by minutes read' do
+    today = DiaryEntry.new('today','I ran'*100)
+    yesterday = DiaryEntry.new('yesterday','I walked'*50)
+    diary = Diary.new
+    diary.add(yesterday)
+    diary.add(today)
+    expect(diary.find_best_entry_for_reading_time(100,1)).to eq today
+  end
 end
