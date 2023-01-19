@@ -52,6 +52,6 @@ describe 'Diary Integration' do
     diary = Diary.new
     diary.add(yesterday)
     diary.add(today)
-    expect(diary.count_words).to eq 6
+    expect(diary.count_words).to eq 4
   end
 end

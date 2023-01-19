@@ -2,8 +2,6 @@
 
 class Diary
 
-  attr_accessor :title, :contents
-
   def initialize
     @diary = []
   end
@@ -18,11 +16,11 @@ class Diary
   end
 
   def count_words
-    sum = 0
-    @diary.each do |x|
-      sum += title + 
+    total_words = 0
+    @diary.each do |entry|
+      total_words += entry.count_words
     end
-    return sum
+    return total_words
   end
 
   def reading_time(wpm) # wpm is an integer representing
@@ -43,6 +41,7 @@ class Diary
 end
 # File: lib/diary_entry.rb
 class DiaryEntry
+
   def initialize(title, contents) # title, contents are strings
     @title = title
     @contents = contents
